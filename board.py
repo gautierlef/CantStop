@@ -42,7 +42,7 @@ class Board:
         return True
 
     def show_board(self):
-        i = 0
+        i = 2
         for column in self.board:
             if i < 10:
                 print(str(i) + '  : ' + str(column))
