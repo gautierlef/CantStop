@@ -30,6 +30,21 @@ class Board:
             for step in range(len(self.board[column])):
                 self.board[column][step] = self.board[column][step].capitalize()
 
+    def is_snap_hook_on_top(self, column):
+        if self.character.capitalize() in column:
+            if column.index(self.character.capitalize()) + 1 == len(column):
+                return True
+        return False
+
+    def is_win(self):
+        count = 0
+        for column in self.board:
+            if self.is_snap_hook_on_top(column):
+                count += 1
+        if count >= 3:
+            return True
+        return False
+
     def is_valid_move(self, column):
         column = column - 2
         if self.character.capitalize() in self.board[column]:

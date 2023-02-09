@@ -11,7 +11,7 @@ def get_rolls():
 def get_choices_from_rolls(rolls):
     choices = []
     for roll in rolls:
-        other_rolls = rolls
+        other_rolls = rolls.copy()
         other_rolls.remove(roll)
         for other_roll in other_rolls:
             choices.append(roll + other_roll)
