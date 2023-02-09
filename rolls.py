@@ -4,7 +4,7 @@ import random
 def get_rolls():
     rolls = []
     for i in range(4):
-        rolls.append(random.randrange(1, 6))
+        rolls.append(random.randrange(1, 7))
     return rolls
 
 
