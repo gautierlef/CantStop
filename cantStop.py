@@ -1,5 +1,5 @@
 import random
-from rolls import get_rolls, get_choices_from_rolls
+from rollsAndChoices import get_rolls, get_choices_from_rolls, clear_choices
 from board import Board
 from datetime import datetime
 
@@ -10,32 +10,33 @@ if __name__ == '__main__':
     boards = [Board('x'), Board('o')]
     player_turn = 0
     rolls = []
-    while not boards[player_turn].is_win():
+    while not boards[player_turn - 1 % 2].is_win():
         print('Player turn : ' + str(player_turn))
         print('Turn : ' + str(turn))
         pawn = 3
         stop = False
         while pawn != 0 and stop is False:
-            print('Pawn remaining : ' + str(pawn))
+            print('Climber remaining : ' + str(pawn))
             stop = random.choice([False, True])
             pawn -= 1
             rolls = get_rolls()
-            print('Rolls :' + str(rolls))
+            print('Rolls : ' + str(rolls))
             choices = get_choices_from_rolls(rolls)
             print('Choices : ' + str(choices))
-            i = 0
-            while i != len(choices):
-                i += 1
-                if not boards[player_turn].is_valid_move(choices[i - 1]):
-                    choices.remove(choices[i - 1])
-                    i = 0
+            choices = clear_choices(choices, boards[player_turn])
             print('Valid choices : ' + str(choices))
             if choices:
-                boards[player_turn].put_climber(random.choice(choices))
+                if len(choices) == 1:
+                    for choice in choices[0]:
+                        boards[player_turn].put_climber(choice)
+                else:
+                    for choice in choices[random.randrange(0, len(choices))]:
+                        boards[player_turn].put_climber(choice)
                 boards[player_turn].show_board()
             else:
-                boards[player_turn].remove_climber()
+                boards[player_turn].remove_climbers()
                 stop = True
+                print('No valid choices : All climbers falls !')
         print('Player ' + str(player_turn) + ' finished is turn !')
         boards[player_turn].lock_snap_hook()
         boards[player_turn].show_board()

@@ -8,7 +8,6 @@ class Board:
             self.board.append(['-'] * (11 - i * 2))
 
     def put_climber(self, column):
-        print(column)
         column = column - 2
         if self.character.capitalize() in self.board[column]:
             self.board[column][self.board[column].index(self.character.capitalize()) + 1] = self.character
@@ -19,7 +18,7 @@ class Board:
         else:
             self.board[column][0] = self.character
 
-    def remove_climber(self):
+    def remove_climbers(self):
         for column in range(len(self.board)):
             for step in range(len(self.board[column])):
                 if self.board[column][step] == self.character or self.board[column][step] == self.character:
