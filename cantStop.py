@@ -21,6 +21,7 @@ if __name__ == '__main__':
         # Continue playing until player stop his turn
         while stop is False:
             print('Climber remaining : ' + str(climber))
+            # Decide if random player keeps playing
             stop = random.choice([False, True])
             rolls = get_rolls()
             print('Rolls : ' + str(rolls))
