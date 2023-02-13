@@ -40,7 +40,7 @@ class Board:
         for column in self.board:
             if self.is_snap_hook_on_top(column):
                 count += 1
-        if count >= 10:
+        if count >= 3:
             return True
         return False
 
