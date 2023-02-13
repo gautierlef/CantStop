@@ -13,12 +13,11 @@ if __name__ == '__main__':
     while not boards[player_turn - 1 % 2].is_win():
         print('Player turn : ' + str(player_turn))
         print('Turn : ' + str(turn))
-        pawn = 3
+        climber = 3
         stop = False
-        while pawn != 0 and stop is False:
-            print('Climber remaining : ' + str(pawn))
+        while climber > 0 and stop is False:
+            print('Climber remaining : ' + str(climber))
             stop = random.choice([False, True])
-            pawn -= 1
             rolls = get_rolls()
             print('Rolls : ' + str(rolls))
             choices = get_choices_from_rolls(rolls)
@@ -29,9 +28,11 @@ if __name__ == '__main__':
                 if len(choices) == 1:
                     for choice in choices[0]:
                         boards[player_turn].put_climber(choice)
+                        climber -= 1
                 else:
                     for choice in choices[random.randrange(0, len(choices))]:
                         boards[player_turn].put_climber(choice)
+                        climber -= 1
                 boards[player_turn].show_board()
             else:
                 boards[player_turn].remove_climbers()
