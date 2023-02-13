@@ -10,6 +10,7 @@ if __name__ == '__main__':
     boards = [Board('x'), Board('o')]
     player_turn = 0
     rolls = []
+    conquered_ways = []
     while not boards[player_turn - 1 % 2].is_win():
         print('Player turn : ' + str(player_turn))
         print('Turn : ' + str(turn))
@@ -23,7 +24,7 @@ if __name__ == '__main__':
             print('Rolls : ' + str(rolls))
             choices = get_choices_from_rolls(rolls)
             print('Choices : ' + str(choices))
-            choices = clear_choices(choices, boards[player_turn])
+            choices = clear_choices(choices, boards[player_turn], conquered_ways)
             print('Valid choices : ' + str(choices))
             if choices:
                 if len(choices) == 1:
@@ -45,6 +46,11 @@ if __name__ == '__main__':
                 print('No valid choices : All climbers falls !')
         print('Player ' + str(player_turn) + ' finished is turn !')
         boards[player_turn].lock_snap_hook()
+        way_number = 0
+        for way in boards[player_turn].board:
+            if way[-1] == boards[player_turn].character.capitalize() and way_number not in conquered_ways:
+                conquered_ways.append(way_number)
+            way_number += 1
         boards[player_turn].show_board()
         if player_turn == 1:
             player_turn = 0

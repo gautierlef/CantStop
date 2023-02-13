@@ -44,8 +44,10 @@ class Board:
             return True
         return False
 
-    def is_valid_move(self, column):
+    def is_valid_move(self, column, conquered_way):
         column = column - 2
+        if column in conquered_way:
+            return False
         if self.character.capitalize() in self.board[column]:
             if self.board[column].index(self.character.capitalize()) + 1 == len(self.board[column]):
                 return False

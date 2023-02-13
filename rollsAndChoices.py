@@ -24,15 +24,15 @@ def get_choices_from_rolls(rolls):
     return choices
 
 
-def clear_choices(choices, board):
+def clear_choices(choices, board, conquered_way):
     for choice in choices:
         if choice[0] == choice[1]:
-            if not board.is_valid_move(choice[0]):
+            if not board.is_valid_move(choice[0], conquered_way):
                 choice.remove(choice[1])
                 choice.remove(choice[0])
             else:
                 board.put_climber(choice[0])
-                if not board.is_valid_move(choice[1]):
+                if not board.is_valid_move(choice[1], conquered_way):
                     choice.remove(choice[1])
                 index = board.board[choice[0] - 2].index(board.character)
                 if index != 0:
@@ -40,9 +40,9 @@ def clear_choices(choices, board):
                 board.board[choice[0] - 2][index] = '-'
                 board.show_board()
         else:
-            if not board.is_valid_move(choice[1]):
+            if not board.is_valid_move(choice[1], conquered_way):
                 choice.remove(choice[1])
-            if not board.is_valid_move(choice[0]):
+            if not board.is_valid_move(choice[0], conquered_way):
                 choice.remove(choice[0])
     choices = list(filter(None, choices))
     return choices
