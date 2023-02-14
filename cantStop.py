@@ -1,7 +1,6 @@
 import random
 from rollsAndChoices import get_rolls, get_choices_from_rolls, clear_choices
 from board import Board
-from datetime import datetime
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ def create_pacmap():
         ['o', 'x', 'o', 'o', 'o', 'x', 'o', 'o', 'o', 'x', 'o'],    # 3
         ['o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o'],    # 4
         ['x', 'x', 'o', 'x', 'x', ' ', 'x', 'x', 'o', 'x', 'x'],    # 5
-        ['o', 'o', 'o', 'x', ' ', ' ', ' ', 'x', 'o', 'o', 'o'],    # 6
+        ['C', 'o', 'o', 'x', ' ', ' ', ' ', 'x', 'o', 'o', 'o'],    # 6
         ['x', 'x', 'o', 'x', 'x', 'x', 'x', 'x', 'o', 'x', 'x'],    # 7
         ['o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o'],    # 8
         ['o', 'x', 'o', 'x', 'x', 'x', 'x', 'x', 'o', 'x', 'o'],    # 9
@@ -35,8 +35,8 @@ if __name__ == '__main__':
     random.seed()
     pacmap = create_pacmap()
     show_pacmap(pacmap)
-    pacman_pos = [5, 5]
-    pacman_last_pos = [5, 5]
+    pacman_pos = [5, 0]
+    pacman_last_pos = [5, 0]
     pacmap[pacman_pos[0]][pacman_pos[1]] = 'C'
     action_number = 1
     while not is_win(pacmap):
@@ -61,7 +61,7 @@ if __name__ == '__main__':
                 if pacmap[pacman_pos[0]][pacman_pos[1] + 1] != 'x':
                     pacman_pos[1] += 1
         if pacmap[pacman_pos[0]][pacman_pos[1]] != 'x':
-            pacmap[pacman_pos[0]][pacman_pos[1]] = 'C'
             pacmap[pacman_last_pos[0]][pacman_last_pos[1]] = ' '
-        show_pacmap(pacmap)
-        action_number += 1
+            pacmap[pacman_pos[0]][pacman_pos[1]] = 'C'
+            show_pacmap(pacmap)
+            action_number += 1
