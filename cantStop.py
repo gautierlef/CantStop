@@ -6,7 +6,7 @@ from datetime import datetime
 
 if __name__ == '__main__':
     turn = 0
-    random.seed(datetime.now())
+    random.seed()
     boards = [Board('x'), Board('o')]
     player_turn = 0
     rolls = []
